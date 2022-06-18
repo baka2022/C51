@@ -1,0 +1,88 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/13/2022 20:16:20 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include <intrins.h>
+   3          
+   4          sbit LED0 = P2^0;
+   5          sbit LED1 = P2^1;
+   6          sbit LED2 = P2^2;
+   7          sbit LED3 = P2^3;
+   8          sbit LED4 = P2^4;
+   9          sbit LED5 = P2^5;
+  10          sbit LED6 = P2^6;
+  11          sbit LED7 = P2^7;
+  12          
+  13          
+  14          sbit key1 = P3^0;
+  15          
+  16          
+  17          const unsigned int LED[8] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+  18          
+  19          
+  20          
+  21          void Delay1ms(unsigned int xms)   //@12.000MHz
+  22          {
+  23   1        unsigned char i, j;
+  24   1      
+  25   1        while(xms--)
+  26   1        {
+  27   2              i = 2;
+  28   2              j = 239;
+  29   2              do
+  30   2              {
+  31   3                while (--j);
+  32   3              } while (--i);
+  33   2        }
+  34   1      }
+  35          
+  36          
+  37          
+  38          
+  39          void main()
+  40          {
+  41   1        int i = 0;
+  42   1        int LEDnum = 0xF01;
+  43   1        P2 = LEDnum;
+  44   1        while(1)
+  45   1        {
+  46   2          if(key1 == 0)
+  47   2          {
+  48   3            Delay1ms(20);
+  49   3            while(key1 == 0);
+  50   3            Delay1ms(20);
+  51   3            i++;
+  52   3            if(i > 7)
+  53   3            {
+  54   4              i = 0;
+C51 COMPILER V9.60.0.0   MAIN                                                              06/13/2022 20:16:20 PAGE 2   
+
+  55   4            }
+  56   3            P2 = LEDnum << i;
+  57   3          } 
+  58   2      
+  59   2        }
+  60   1      }
+  61          
+  62          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     94    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,85 @@
+C51 COMPILER V9.60.0.0   LED8_8                                                            06/18/2022 00:49:35 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED8_8
+OBJECT MODULE PLACED IN .\Objects\LED8_8.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE USER\LED8_8\LED8_8.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\USER\timer;.\USER
+                    -\key;.\USER\Delay;.\USER\LCD1602;.\USER\uart;.\USER\LED8_8) DEBUG OBJECTEXTEND PRINT(.\Listings\LED8_8.lst) TABS(2) OBJE
+                    -CT(.\Objects\LED8_8.obj)
+
+line level    source
+
+   1          #include "LED8_8.h"
+   2          #include <REGX52.H>
+   3          #include "delay.h"
+   4          
+   5          sbit SH = P2^0;   //输入时钟
+   6          sbit DS = P2^1;   //输入数据
+   7          sbit ST = P2^2;   //输出锁存
+   8          
+   9          
+  10          /**
+  11            * @brief  使用75HC595写入数据
+  12            * @param
+  13            * @retval
+  14          */
+  15          
+  16          void _74HC595_writeByte(unsigned char byte)
+  17          {
+  18   1        unsigned int i = 0;
+  19   1        for(i;i < 8;i++)
+  20   1        {
+  21   2          DS = byte&(0x80 >> i);
+  22   2          SH = 1;
+  23   2          SH = 0;
+  24   2        }
+  25   1        ST = 1;
+  26   1        ST = 0;
+  27   1      }
+  28          
+  29          
+  30          
+  31          /**
+  32            * @brief  LED8*8矩阵显示
+  33            * @param
+  34            * @retval
+  35          */
+  36          
+  37          void LED8_8_show(unsigned char col,Data)
+  38          {
+  39   1        P1 = ~Data;
+  40   1        _74HC595_writeByte(0x80>>col);
+  41   1        Delay(1);
+  42   1        _74HC595_writeByte(0x00);
+  43   1      }
+  44          
+  45          
+  46          
+  47          /**
+  48            * @brief  74HC595初始化
+  49            * @param
+  50            * @retval
+  51          */
+  52          
+  53          void _74HC595_init()
+C51 COMPILER V9.60.0.0   LED8_8                                                            06/18/2022 00:49:35 PAGE 2   
+
+  54          {
+  55   1        SH = 0;
+  56   1        ST = 0;
+  57   1        P1 = 0;
+  58   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     92    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

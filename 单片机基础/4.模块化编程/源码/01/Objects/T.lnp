@@ -1,0 +1,5 @@
+".\Objects\main.obj",
+".\Objects\delay.obj",
+".\Objects\seg.obj" 
+TO ".\Objects\T" 
+PRINT(".\Listings\T.m51")

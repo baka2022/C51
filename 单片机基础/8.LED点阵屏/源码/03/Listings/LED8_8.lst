@@ -1,0 +1,60 @@
+C51 COMPILER V9.60.0.0   LED8_8                                                            06/17/2022 23:34:56 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LED8_8
+OBJECT MODULE PLACED IN .\Objects\LED8_8.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE USER\LED8_8\LED8_8.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\USER\timer;.\USER
+                    -\key;.\USER\Delay;.\USER\LCD1602;.\USER\uart;.\USER\LED8_8) DEBUG OBJECTEXTEND PRINT(.\Listings\LED8_8.lst) TABS(2) OBJE
+                    -CT(.\Objects\LED8_8.obj)
+
+line level    source
+
+   1          #include "LED8_8.h"
+   2          #include <REGX52.H>
+   3          #include "delay.h"
+   4          
+   5          sbit SH = P2^0;   //输入时钟
+   6          sbit DS = P2^1;   //输入数据
+   7          sbit ST = P2^2;   //输出锁存
+   8          
+   9          void _74HC595_writeByte(unsigned char byte)
+  10          {
+  11   1        unsigned int i = 0;
+  12   1        for(i;i < 8;i++)
+  13   1        {
+  14   2          DS = byte&(0x80 >> i);
+  15   2          SH = 1;
+  16   2          SH = 0;
+  17   2        }
+  18   1        ST = 1;
+  19   1        ST = 0;
+  20   1      }
+  21          
+  22          void LED8_8_show(unsigned char col,Data)
+  23          {
+  24   1        P1 = ~Data;
+  25   1        _74HC595_writeByte(0x80>>col);
+  26   1        Delay(1);
+  27   1        _74HC595_writeByte(0x00);
+  28   1      }
+  29          
+  30          void _74HC595_init()
+  31          {
+  32   1        SH = 0;
+  33   1        ST = 0;
+  34   1        P1 = 0;
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     92    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,78 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/14/2022 11:11:12 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\USER\timer;.\USER\key;.\USER\De
+                    -lay) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "timer.h"
+   3          #include "key.h"
+   4          
+   5          
+   6          
+   7          
+   8          unsigned int keynum;
+   9          void main()
+  10          {
+  11   1        Timer0_Init();
+  12   1        
+  13   1        while(1)
+  14   1        {
+  15   2          keynum = key();
+  16   2          if(keynum)
+  17   2          {
+  18   3            if(keynum == 1)
+  19   3            {
+  20   4              P2_0 = ~P2_0;
+  21   4            }
+  22   3            if(keynum == 2)
+  23   3            {
+  24   4              P2_1 = ~P2_1;
+  25   4            }
+  26   3            if(keynum == 3)
+  27   3            {
+  28   4              P2_2 = ~P2_2;
+  29   4            }
+  30   3            if(keynum == 4)
+  31   3            {
+  32   4              P2_3 = ~P2_3;
+  33   4            }
+  34   3          }
+  35   2        }
+  36   1      }
+  37          
+  38          
+  39          void Time0_Routine()interrupt 1
+  40          {
+  41   1          static unsigned int count = 0;
+  42   1      //  赋初值否则只有一次是1微秒，其他为65微秒
+  43   1          TL0 = 0x18;
+  44   1          TH0 = 0xFC;
+  45   1          count++;
+  46   1          if(count == 1000)
+  47   1          {
+  48   2            count = 0;
+  49   2          }
+  50   1      }
+  51          
+  52          
+
+
+C51 COMPILER V9.60.0.0   MAIN                                                              06/14/2022 11:11:12 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     95    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

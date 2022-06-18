@@ -1,0 +1,102 @@
+C51 COMPILER V9.60.0.0   KEY                                                               06/13/2022 22:01:04 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE src\Key\key.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\src\Delay;.\src\Seg;.\sr
+                    -c\LCD1602;.\src\Key) DEBUG OBJECTEXTEND PRINT(.\Listings\key.lst) TABS(2) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "key.h"
+   3          #include "delay.h"
+   4          
+   5          
+   6          
+   7          
+   8          /**
+   9            * @brief  矩阵键盘行扫描
+  10            * @param  无
+  11            * @retval key按下按键的键值
+  12          */
+  13          
+  14          
+  15          unsigned int key_init()
+  16          {
+  17   1      
+  18   1        unsigned int key = 0;
+  19   1          
+  20   1          P1 = 0x7F;
+  21   1      
+  22   1        
+  23   1          if(P1 != 0x7F)
+  24   1          {
+  25   2            Delay(20);
+  26   2            
+  27   2            switch(P1)
+  28   2            {
+  29   3              case 0x77:while(P1 == 0x77); Delay(20);key = 1;break;
+  30   3              case 0x7B:while(P1 == 0x7B); Delay(20);key = 2;break;
+  31   3              case 0x7D:while(P1 == 0x7D); Delay(20);key = 3;break;
+  32   3              case 0x7E:while(P1 == 0x7E); Delay(20);key = 4;break;
+  33   3            }
+  34   2          }
+  35   1      
+  36   1          
+  37   1          
+  38   1          P1 = 0xBF;
+  39   1          if(P1 != 0xBF)
+  40   1          {
+  41   2            switch(P1)
+  42   2            {
+  43   3              case 0xB7:while(P1 == 0xB7); Delay(20);key = 5;break;
+  44   3              case 0xBB:while(P1 == 0xBB); Delay(20);key = 6;break;
+  45   3              case 0xBD:while(P1 == 0xBD); Delay(20);key = 7;break;
+  46   3              case 0xBE:while(P1 == 0xBE); Delay(20);key = 8;break;
+  47   3            }
+  48   2          }
+  49   1      
+  50   1          P1 = 0xDF;
+  51   1          if(P1 != 0xDF)
+  52   1          {
+  53   2            switch(P1)
+  54   2            {
+C51 COMPILER V9.60.0.0   KEY                                                               06/13/2022 22:01:04 PAGE 2   
+
+  55   3              case 0xD7:while(P1 == 0xD7); Delay(20);key = 9;break;
+  56   3              case 0xDB:while(P1 == 0xDB); Delay(20);key = 10;break;
+  57   3              case 0xDD:while(P1 == 0xDD); Delay(20);key = 11;break;
+  58   3              case 0xDE:while(P1 == 0xDE); Delay(20);key = 12;break;
+  59   3            }
+  60   2          }
+  61   1          
+  62   1          P1 = 0xEF;
+  63   1          if(P1 != 0xEF)
+  64   1          {
+  65   2            switch(P1)
+  66   2            {
+  67   3              case 0xE7:while(P1 == 0xE7); Delay(20);key = 13;break;
+  68   3              case 0xEB:while(P1 == 0xEB); Delay(20);key = 14;break;
+  69   3              case 0xED:while(P1 == 0xED); Delay(20);key = 15;break;
+  70   3              case 0xEE:while(P1 == 0xEE); Delay(20);key = 16;break;
+  71   3            }
+  72   2          }
+  73   1          
+  74   1              return key;
+  75   1          
+  76   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    473    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,117 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/12/2022  21:03:43  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\数码管 PRINT (.\Listings\数码管.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\数码管 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0060H     UNIT         ?DT?MAIN
+            IDATA   0068H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     006BH     UNIT         ?C_INITSEG
+            CODE    00FAH     002BH     UNIT         ?PR?MAIN?MAIN
+            CODE    0125H     0015H     UNIT         ?PR?_DELAY?MAIN
+            CODE    013AH     0015H     UNIT         ?PR?_DISPLAY?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\数码管 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DISPLAY?MAIN
+  +--> ?PR?_DELAY?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\数码管 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/12/2022  21:03:43  PAGE 2
+
+
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        REG1
+  D:0028H         PUBLIC        REG2
+  D:0048H         PUBLIC        REG3
+  C:00FAH         PUBLIC        main
+  D:0058H         PUBLIC        LED
+  C:0125H         PUBLIC        _Delay
+  C:013AH         PUBLIC        _display
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        xms
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0125H         LINE#         27
+  C:0125H         LINE#         28
+  C:0125H         LINE#         31
+  C:012FH         LINE#         32
+  C:012FH         LINE#         33
+  C:0131H         LINE#         34
+  C:0133H         LINE#         36
+  C:0133H         LINE#         37
+  C:0135H         LINE#         38
+  C:0137H         LINE#         39
+  C:0139H         LINE#         40
+  -------         ENDPROC       _DELAY
+  -------         PROC          _DISPLAY
+  D:0006H         SYMBOL        x
+  D:0004H         SYMBOL        y
+  C:013AH         LINE#         43
+  C:013AH         LINE#         44
+  C:013AH         LINE#         45
+  C:0144H         LINE#         46
+  C:014EH         LINE#         47
+  -------         ENDPROC       _DISPLAY
+  -------         PROC          MAIN
+  C:00FAH         LINE#         50
+  C:00FAH         LINE#         51
+  C:00FAH         LINE#         53
+  C:00FAH         LINE#         54
+  C:00FAH         LINE#         55
+  C:0102H         LINE#         56
+  C:0106H         LINE#         57
+  C:0111H         LINE#         58
+  C:0114H         LINE#         59
+  C:011FH         LINE#         60
+  C:0123H         LINE#         61
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=105.0 xdata=0 code=335
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

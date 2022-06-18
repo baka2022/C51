@@ -1,0 +1,150 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/13/2022  00:23:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\delay.obj, .\Objects\seg.obj TO .\Objects\T PRINT (.\Listings\
+>> T.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\delay.obj (DELAY)
+  .\Objects\seg.obj (SEG)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\T (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0060H     UNIT         ?DT?SEG
+            DATA    0068H     0002H     UNIT         _DATA_GROUP_
+            IDATA   006AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     006BH     UNIT         ?PR?_DISPLAY?SEG
+            CODE    00FAH     006BH     UNIT         ?C_INITSEG
+            CODE    0165H     0025H     UNIT         ?PR?MAIN?MAIN
+            CODE    018AH     0015H     UNIT         ?PR?_DELAY?DELAY
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\T (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  0068H    0002H
+  +--> ?PR?_DISPLAY?SEG
+
+?PR?_DISPLAY?SEG               -----    -----
+  +--> ?PR?_DELAY?DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\T (MAIN)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/13/2022  00:23:17  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0165H         PUBLIC        main
+  -------         PROC          MAIN
+  -------         DO            
+  D:0068H         SYMBOL        i
+  -------         ENDDO         
+  C:0165H         LINE#         6
+  C:0165H         LINE#         7
+  C:0165H         LINE#         9
+  C:0165H         LINE#         10
+  C:0165H         LINE#         11
+  C:016AH         LINE#         12
+  C:016AH         LINE#         13
+  C:016AH         LINE#         14
+  C:0175H         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:018AH         PUBLIC        _Delay
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        xms
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:018AH         LINE#         8
+  C:018AH         LINE#         9
+  C:018AH         LINE#         12
+  C:0194H         LINE#         13
+  C:0194H         LINE#         14
+  C:0196H         LINE#         15
+  C:0198H         LINE#         17
+  C:0198H         LINE#         18
+  C:019AH         LINE#         19
+  C:019CH         LINE#         20
+  C:019EH         LINE#         21
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        SEG
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A0H.0       PUBLIC        LED0
+  B:00A0H.1       PUBLIC        LED1
+  B:00A0H.2       PUBLIC        LED2
+  D:0008H         PUBLIC        REG1
+  D:0028H         PUBLIC        REG2
+  D:0048H         PUBLIC        REG3
+  D:0058H         PUBLIC        LED
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/13/2022  00:23:17  PAGE 3
+
+
+  C:008FH         PUBLIC        _display
+  -------         PROC          _DISPLAY
+  D:0006H         SYMBOL        x
+  D:0004H         SYMBOL        y
+  C:008FH         LINE#         32
+  C:008FH         LINE#         33
+  C:008FH         LINE#         34
+  C:00B7H         LINE#         35
+  C:00B7H         LINE#         36
+  C:00BBH         LINE#         37
+  C:00C3H         LINE#         38
+  C:00C7H         LINE#         39
+  C:00CFH         LINE#         40
+  C:00D3H         LINE#         41
+  C:00DBH         LINE#         42
+  C:00DFH         LINE#         43
+  C:00E5H         LINE#         44
+  C:00E5H         LINE#         45
+  C:00EFH         LINE#         46
+  C:00F6H         LINE#         48
+  C:00F9H         LINE#         49
+  -------         ENDPROC       _DISPLAY
+  -------         ENDMOD        SEG
+
+Program Size: data=107.0 xdata=0 code=415
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
