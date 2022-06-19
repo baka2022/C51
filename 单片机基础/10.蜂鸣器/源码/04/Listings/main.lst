@@ -1,0 +1,125 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/19/2022 00:18:16 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\USER\timer;.\USER\key;.\USER\De
+                    -lay;.\USER\LCD1602;.\USER\uart;.\USER\buzzer) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\mai
+                    -n.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "INTRINS.h"
+   3          #include "delay.h"
+   4          #include "timer.h"
+   5          
+   6          
+   7          #define SPEED 500
+   8          
+   9          sbit SOUNDER = P2^1;
+  10          
+  11          unsigned int fre[] = {
+  12            0,
+  13            63577,
+  14            63691,
+  15            63792,
+  16            63892,
+  17            63981,
+  18            64070,
+  19            64152,
+  20            64229,
+  21            64303,
+  22            64372,
+  23            64442,
+  24            64499,
+  25            64557,
+  26            64612,
+  27            64664,
+  28            64713,
+  29            64759,
+  30            64803,
+  31            64844,
+  32            64883,
+  33            64919,
+  34            64954,
+  35            64987,
+  36            65017,
+  37            65047,
+  38            65074,
+  39            65100,
+  40            65124,
+  41            65148,
+  42            65169,
+  43            65190,
+  44            65209,
+  45            65228,
+  46            65245,
+  47            65261,
+  48            65536,
+  49          };
+  50          
+  51          
+  52          unsigned char music[] = {
+  53            13,4,
+C51 COMPILER V9.60.0.0   MAIN                                                              06/19/2022 00:18:16 PAGE 2   
+
+  54            13,4,
+  55            20,4,
+  56            20,4,
+  57            22,4,
+  58            22,4,
+  59            20,4 + 4,
+  60            18,4,
+  61            18,4,
+  62            17,4,
+  63            17,4,
+  64            15,4,
+  65            15,4,
+  66            13,4 + 4,
+  67          };
+  68          
+  69          unsigned char fresel,msel;
+  70          
+  71          void main()
+  72          {
+  73   1        Timer0_Init();
+  74   1        while(1)
+  75   1        {
+  76   2      
+  77   2          fresel = music[msel];
+  78   2          msel++;
+  79   2          Delay(SPEED / 4 * music[msel]);
+  80   2          msel++;
+  81   2          TR0 = 0;
+  82   2          Delay(5);
+  83   2          TR0 = 1;
+  84   2        
+  85   2        }
+  86   1      }
+  87          
+  88          
+  89          void Time0_Routine()interrupt 1
+  90          {
+  91   1          TL0 = fre[fresel]%256;
+  92   1          TH0 = fre[fresel]/256;
+  93   1          SOUNDER = !SOUNDER;
+  94   1      }
+  95          
+  96          
+  97          
+  98          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     82    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =    104    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

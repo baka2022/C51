@@ -1,0 +1,80 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              06/18/2022 16:04:28 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\USER\timer;.\USER\key;.\USER\De
+                    -lay;.\USER\LCD1602;.\USER\uart;.\USER\DS1302) DEBUG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\mai
+                    -n.obj)
+
+line level    source
+
+   1          //DS1302是由美国DALLAS公司推出的具有涓细电流充电能力的低功耗实时时钟芯片。
+   2          //它可以对年、月、日、周、时、分、秒进行计时，且具有闰年补偿等多种功能。
+   3          
+   4          
+   5          
+   6          #include <REGX52.H>
+   7          #include "INTRINS.h"
+   8          #include "LCD1602.h"
+   9          #include "delay.h"
+  10          #include "DS1302.h"
+  11          
+  12          
+  13          void main()
+  14          {
+  15   1        LCD_Init();
+  16   1        DS1302_init();
+  17   1        while(1)
+  18   1        {
+  19   2          unsigned char miao,fen,shi,nian,yue,ri;
+  20   2          miao = DS1302_readbyte(0x81);
+  21   2          miao = miao/16*10 + miao%16;
+  22   2          fen = DS1302_readbyte(0x83);
+  23   2          fen = fen/16*10 + fen%16;
+  24   2          shi = DS1302_readbyte(0x85);
+  25   2          shi = shi/16*10 + shi%16;
+  26   2          nian = DS1302_readbyte(0x8D);
+  27   2          nian = nian/16*10 + nian%16;
+  28   2          yue = DS1302_readbyte(0x89);
+  29   2          yue = yue/16*10 + yue%16;
+  30   2          ri = DS1302_readbyte(0x87);
+  31   2          ri = ri/16*10 + ri%16;
+  32   2          LCD_ShowString(1,1,"Time:");
+  33   2          LCD_ShowNum(1,7,shi,2);
+  34   2          LCD_ShowString(1,9,":");
+  35   2          LCD_ShowNum(1,10,fen,2);
+  36   2          LCD_ShowString(1,12,":");
+  37   2          LCD_ShowNum(1,13,miao,2);
+  38   2          LCD_ShowString(2,1,"Date:");
+  39   2          LCD_ShowNum(2,7,nian,2);
+  40   2          LCD_ShowString(2,9,"-");
+  41   2          LCD_ShowNum(2,10,yue,2);
+  42   2          LCD_ShowString(2,12,"-");
+  43   2          LCD_ShowNum(2,13,ri,2);
+  44   2      
+  45   2        }
+  46   1      }
+  47          
+  48          
+  49          
+  50          
+  51          
+  52          
+  53          
+C51 COMPILER V9.60.0.0   MAIN                                                              06/18/2022 16:04:28 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    321    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
